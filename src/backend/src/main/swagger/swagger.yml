@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  description:
+    'Welcome to the awesome factorial repository, here you can find the code to
+    run your awesome factorial calculator.'
+  version: '1.0.0'
+  title: 'Awesome factorial application'
+  license:
+    name: 'MIT'
+    url: 'https://mit-license.org/'
+host: 'localhost:8081'
+basePath: '/v1'
+tags:
+  - name: 'calculations'
+    description: 'Best Calculator in the world'
+externalDocs:
+  description: 'Github Repository'
+  url: 'https://github.com/rui-costa/awesome_factorial_application'
+schemes:
+  - 'http'
+paths:
+  /factorial:
+    post:
+      tags:
+        - 'calculations'
+      summary: 'Calculate a factorial number'
+      operationId: 'factorial'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Number to be factored'
+          required: true
+          schema:
+            $ref: '#/definitions/ApiRequest'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: 'Invalid status value'
+  /power:
+    get:
+      tags:
+        - 'calculations'
+      summary: 'Calculate a Power of a number'
+      operationId: 'power'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'query'
+          name: 'number'
+          description: 'Number to be factored'
+          required: true
+          type: 'integer'
+          format: 'int16'
+        - in: 'query'
+          name: 'power'
+          required: true
+          type: 'integer'
+          format: 'int16'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: 'Invalid status value'
+components:
+definitions:
+  ApiRequest:
+    type: 'object'
+    properties:
+      number:
+        type: 'integer'
+        format: 'int16'
+  ApiResponse:
+    type: 'object'
+    properties:
+      data:
+        type: 'object'
+        properties:
+          number:
+            type: 'integer'
+            format: 'int16'

@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: src/frontend/Dockerfile
+    networks:
+      - private
+      - public
+    ports:
+      - 8080:8080
+
+  backend:
+    build:
+      context: .
+      dockerfile: src/backend/Dockerfile
+    networks:
+      - private
+    ports:
+      - 8080:8080
+
+  adserver:
+    build:
+      context: .
+      dockerfile: src/adserver/Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - private
+
+networks:
+  private:
+    internal: true
+  public:
+    internal: false

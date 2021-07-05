@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.2</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.awesome</groupId>
+  <artifactId>Application</artifactId>
+  <version>1.0.0</version>
+  <name>Awesome Factorial Application</name>
+  <description>Awesome Factorial Application</description>
+  <properties>
+    <java.version>11</java.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>2.3.4.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+      <version>2.3.4.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>2.1.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>2.1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.3.4.RELEASE</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.4</version>
+        <configuration>
+          <excludes>
+            <!-- Generated swagger server code -->
+            <exclude>**/swagger/*</exclude>
+            <!-- generated clients -->
+            <exclude>generated/**/*</exclude>
+            <!-- models and entities -->
+            <exclude>**/db/entities/*</exclude>
+            <exclude>**/models/*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+
+      <plugin>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-codegen-maven-plugin</artifactId>
+        <version>2.3.1</version>
+        <executions>
+          <execution>
+            <id>default-cli</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>src/main/swagger/swagger.yml</inputSpec>
+              <language>spring</language>
+              <modelPackage>com.awesome.swagger</modelPackage>
+              <apiPackage>com.awesome.swagger</apiPackage>
+              <output>${project.basedir}</output>
+              <configOptions>
+                <dateLibrary>java8</dateLibrary>
+                <artifactId>factorialApp</artifactId>
+                <groupId>com.awesome</groupId>
+                <basePackage>com.awesome.swagger</basePackage>
+                <configPackage>com.awesome.swagger</configPackage>
+                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                <interfaceOnly>true</interfaceOnly>
+              </configOptions>
+            </configuration>
+          </execution>
+          <!--  <execution>
+               <id>html</id>
+               <goals>
+                   <goal>generate</goal>
+               </goals>
+               <configuration>
+                   <inputSpec>src/main/swagger/swagger.yml</inputSpec>
+                   <language>html2</language>
+                   <output>${project.basedir}/src/main/resources/static</output>
+               </configuration>
+           </execution> -->
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
