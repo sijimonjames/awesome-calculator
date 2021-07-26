@@ -20,11 +20,10 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Set up Docker Buildx
-        id: buildx
         uses: docker/setup-buildx-action@v1
-          id: buildx
-          with:
-            install: true
+        id: buildx
+        with:
+          install: true
       - name: run docker file
         run: chmod +x /run
       - name: Integration Tests
