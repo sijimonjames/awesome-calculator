@@ -13,11 +13,11 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <serenity.version>2.3.12</serenity.version> <!-- https://bintray.com/serenity/maven/serenity-core/ -->
+    <serenity.version>2.4.5</serenity.version> <!-- https://bintray.com/serenity/maven/serenity-core/ -->
     <serenity.maven.version>2.3.12</serenity.maven.version>
     <cucumber.version>6.9.1</cucumber.version>
-    <serenity.cucumber.version>2.3.12</serenity.cucumber.version>
-    <serenity.restassured.version>2.4.3</serenity.restassured.version>
+    <serenity.cucumber.version>2.4.24</serenity.cucumber.version>
+    <serenity.restassured.version>2.4.5</serenity.restassured.version>
   </properties>
 
   <!-- Define the Bintray repos for convenience -->
