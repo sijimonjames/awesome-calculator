@@ -10,7 +10,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,9 +19,10 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Build docker images
-          run: docker-compose build
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
       - name: run docker file
-          run: ./run
+        run: ./run
       - name: Integration Tests
         run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
