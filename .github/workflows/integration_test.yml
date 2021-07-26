@@ -21,4 +21,4 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build with Maven
-      run: mvn -B verify serenity:aggregate --file pom.xml
+      run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
