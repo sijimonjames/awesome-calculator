@@ -22,7 +22,10 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
+          id: buildx
+          with:
+            install: true
       - name: run docker file
-        run: ./run
+        run: chmod +x /run
       - name: Integration Tests
         run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
