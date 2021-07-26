@@ -25,6 +25,6 @@ jobs:
         with:
           install: true
       - name: run docker file
-        run: ./run.sh
+        run: ./run
       - name: Integration Tests
         run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
