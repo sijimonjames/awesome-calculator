@@ -7,39 +7,37 @@ on:
       - 'master'
 
 jobs:
-  build:
+  buildx:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Set up Docker Buildx
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
         uses: docker/setup-buildx-action@v1
-      - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}
+          install: true
+      -
+        name: Build
+        run: |
+          docker build . # will run buildx
 
       - name: run docker file
         run: ./run
         continue-on-error: true
-      - name: Integration Tests
-        run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
-        continue-on-error: true
+
+test:
+  runs-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
+    - name: Integration Tests
+      run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
+      continue-on-error: true
