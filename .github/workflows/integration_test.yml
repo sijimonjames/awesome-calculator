@@ -27,17 +27,17 @@ jobs:
         run: ./run
         continue-on-error: true
 
-test:
-  runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
 
-    - name: Integration Tests
-      run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
-      continue-on-error: true
+      - name: Integration Tests
+        run: mvn -B verify serenity:aggregate --file awesome-calculator_integration_test/pom.xml
+        continue-on-error: true
